@@ -1,34 +1,38 @@
 import random
-import words_for_hangman                # To access the list 'words' from words_for_hangman.py
+import words_for_hangman
 
-print("Welcome to the Game : HANGMAN")
-print("=============================")
+def welcome_text():
+    print("Welcome to the Game : HANGMAN")
+    print("=============================")
 
-x = int(input("Enter 1 to start, Enter 0 to end.\n"))
+def initialize_word(word):
+    return random.choice(word)
 
-if x == 0:
-    exit()
+def char_check(string,ch):
+    if ch in string:
+        return string.find(ch)
 
-the_mystery_word = random.choice(words_for_hangman.words)
-length = len(the_mystery_word)
+welcome_text()
+
+mystery_word = initialize_word(words_for_hangman.words)
+length = len(mystery_word)
 life = 6
-your_guess = list("_"*length)
+your_choice = list("-"*length)
 
-print("".join(your_guess))
+print("".join(your_choice))
 
-while ("_" in your_guess) and life > 0:
-    ch = input("Enter Your Guess: ")
-    idx = the_mystery_word.find(ch)
-    if idx != -1:
-        your_guess[idx] = ch
-    else:
+while life > 0 and ("-" in your_choice):
+    x = input("Enter Your Guess: ")
+    idx = char_check(mystery_word,x)
+    if idx != None:
+        your_choice[idx] = x
+        print("".join(your_choice))
+    elif idx == None:
         life-=1
-        print(f"Wrong Guess! Chance left : {life}")
-    print("".join(your_guess))              # Convert the list to string to print
+        print(f"Wrong Guess! You have {life} chances left")
 
-if "".join(your_guess) == the_mystery_word:
-    print("Congratulations!\nYou win!")
+if ''.join(your_choice) == mystery_word:
+    print("You Win!")
 elif life == 0:
-    print("You Lose!")
-
+    print(f"You Lose!\nThe Mystery Word was :{mystery_word}")
 
