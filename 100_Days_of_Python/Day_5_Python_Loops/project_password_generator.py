@@ -1,16 +1,12 @@
 import string
 import random
 
-# List of lowercase letters
 lowercase = list(string.ascii_lowercase)      # ['a', 'b', ..., 'z']
 
-# List of uppercase letters
 uppercase = list(string.ascii_uppercase)      # ['A', 'B', ..., 'Z']
 
-# List of digits
 nums = list(string.digits)                    # ['0', '1', ..., '9']
 
-# List of special characters (punctuation)
 special_characters = list(string.punctuation) # ['!', '"', '#', ..., '~']
 
 print("Hi! Welcome to Password Generator.")
