@@ -8,9 +8,8 @@ def welcome_text():
 def initialize_word(word):
     return random.choice(word)
 
-def char_check(string,ch):
-    if ch in string:
-        return string.find(ch)
+def char_check(string, ch):
+    return [i for i, letter in enumerate(string) if letter == ch]               # Returns list of indices
 
 welcome_text()
 
@@ -24,11 +23,12 @@ print("".join(your_choice))
 while life > 0 and ("-" in your_choice):
     x = input("Enter Your Guess: ")
     idx = char_check(mystery_word,x)
-    if idx != None:
-        your_choice[idx] = x
+    if idx:   # if not empty
+        for id in idx:
+            your_choice[id] = x
         print("".join(your_choice))
-    elif idx == None:
-        life-=1
+    else:
+        life -= 1
         print(f"Wrong Guess! You have {life} chances left")
 
 if ''.join(your_choice) == mystery_word:
