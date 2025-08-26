@@ -19,6 +19,7 @@ total_length = int(input("Total length of password: "))
 
 if total_length < (lc + uc + nu + sp):
     print("Password Length is invalid for your choice")
+    exit(1)
 
 password_chars = []
 
